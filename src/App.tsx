@@ -1,11 +1,13 @@
-
+import Header from "./components/header";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <>
+      <div className="bg-slate-100 py-20">
+        <Header />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
