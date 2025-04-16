@@ -202,7 +202,7 @@ export default function App() {
             aria-label={item.title}
             title={<strong>{item.title}</strong>}
             indicator={<ArrowRightIcon className="w-6 h-4" />}
-            className="text-left border rounded-2xl mb-4 py-6 w-full  hover:bg-slate-50"
+            className="text-left border rounded-2xl mb-4 py-1 w-full  hover:bg-slate-50"
           >
             {item.content}
           </AccordionItem>
