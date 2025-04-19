@@ -17,10 +17,10 @@ export default function NextStepsSection() {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button className="w-full flex justify-center items-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors">
+          <button className="button is-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
+              className="icon-embed-xsmall"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -41,10 +41,10 @@ export default function NextStepsSection() {
             Copy a unique link to share this simulation with your current
             settings.
           </p>
-          <button className="w-full flex justify-center items-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+          <button className="button is-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
+              className="icon-embed-xsmall"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -60,10 +60,10 @@ export default function NextStepsSection() {
           <p className="text-sm text-gray-600 mb-4">
             Save a PDF summary of the simulation results and charts.
           </p>
-          <button className="w-full flex justify-center items-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+          <button className="button is-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
+              className="icon-embed-xsmall"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
