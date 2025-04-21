@@ -32,9 +32,32 @@ function App() {
     ramp_up: 6, // Default ramp up period
     monthly_expense: 2000,
   });
-  const [results, setResults] = useState<SimulationResults | null>(null);
+  // Initialize results with default values so sections are always displayed
+  const [results, setResults] = useState<SimulationResults>({
+    monthlyData: Array(12)
+      .fill(0)
+      .map((_, index) => ({
+        month: `Month ${index + 1}`,
+        traffic: 0,
+        leads: 0,
+        customers: 0,
+        revenue: 0,
+        cumRevenue: 0,
+        cumExpense: 0,
+        profit: 0,
+        cumProfit: 0,
+      })),
+    totalTraffic: 0,
+    totalLeads: 0,
+    totalCustomers: 0,
+    totalMonthlyRevenue: 0,
+    finalCumulativeRevenue: 0,
+    finalCumulativeExpense: 0,
+    finalCumulativeProfit: 0,
+    roiMonth: -1,
+  });
 
-  // Load inputs from URL on component mount
+  // Load inputs from URL on component mount and run initial simulation
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     let paramsFound = false;
@@ -50,15 +73,20 @@ function App() {
 
     if (paramsFound) {
       setInputs(newInputs);
-      runSimulation(newInputs);
     }
+
+    // Always run simulation on mount with current inputs
+    runSimulation(paramsFound ? newInputs : inputs);
   }, []);
 
   const handleInputChange = (name: keyof SimulationInputs, value: number) => {
-    setInputs((prev) => ({
-      ...prev,
+    const newInputs = {
+      ...inputs,
       [name]: value,
-    }));
+    };
+    setInputs(newInputs);
+    // Run simulation automatically when inputs change
+    runSimulation(newInputs);
   };
 
   const runSimulation = (simulationInputs: SimulationInputs = inputs) => {
@@ -146,20 +174,14 @@ function App() {
         <div className="flex flex-col min-h-screen p-6 bg-blue-50">
           <div className="bg-white rounded-2xl mx-auto w-11/12 min-h-screen">
             <Header />
-            <Assumptions
-              inputs={inputs}
-              onInputChange={handleInputChange}
-              onRunSimulation={() => runSimulation()}
+            <Assumptions inputs={inputs} onInputChange={handleInputChange} />
+            <ChartsSection monthlyData={results.monthlyData} />
+            <TableSection
+              results={results}
+              formatNumber={formatNumber}
+              formatCurrency={formatCurrency}
             />
-            {results && (
-              <TableSection
-                results={results}
-                formatNumber={formatNumber}
-                formatCurrency={formatCurrency}
-              />
-            )}
-            {results && <ChartsSection monthlyData={results.monthlyData} />}
-            {results && <NextStepsSection />}
+            <NextStepsSection />
           </div>
         </div>
       </HeroUIProvider>

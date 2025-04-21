@@ -31,7 +31,7 @@ export default function TableSection({
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 mt-4">
-            <thead className="bg-blue-500 text-white">
+            <thead className="bg-slate-700 text-white">
               <tr>
                 <th
                   scope="col"

@@ -6,6 +6,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+import { MessageCircleQuestion } from "lucide-react";
 
 export default function SheetInformation() {
   const content = [
@@ -76,9 +77,10 @@ export default function SheetInformation() {
 
   return (
     <Sheet>
-      <div className="justify-center align-middle lg:ml-4 md:ml-2 ml-2 py-4">
-        <SheetTrigger className="text-slate-900  cursor-pointer bg-slate-50 rounded-xl mr-8 px-2 py-2 text-sm font-medium hover:bg-slate-200 ease-in-out duration-500">
-          How to use?
+      <div className="justify-center align-middle lg:ml-4 md:ml-2 ml-2 ">
+        <SheetTrigger className="flex text-slate-900  cursor-pointer bg-white rounded-xl mr-8 px-2 py-2 text-sm font-medium hover:bg-slate-200 ease-in-out duration-500">
+          <MessageCircleQuestion className="mr-2" />
+          <p className="mt-0.5">How to use?</p>
         </SheetTrigger>
       </div>
       <SheetContent className="bg-white rounded-l-4xl">
