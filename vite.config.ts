@@ -1,23 +1,25 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import tailwindcss from '@tailwindcss/vite'
-import flowbiteReact from "flowbite-react/plugin/vite";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import tailwindcss from "@tailwindcss/vite";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), flowbiteReact(), cssInjectedByJsPlugin()],
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": "/src", // This is relative to the project root
+    },
+  },
   build: {
-    target: 'esnext',
+    target: "esnext",
     cssCodeSplit: false,
     rollupOptions: {
       output: {
-        entryFileNames: 'index.js',
-        manualChunks: undefined,
+        entryFileNames: "index.js",
+        manualChunks: () => "index.js",
       },
     },
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    exclude: ["lucide-react"],
   },
-})
+});

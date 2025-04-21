@@ -1,4 +1,5 @@
 import { SimulationResults } from "../types";
+import CustomTooltip from "./CustomTooltip";
 
 interface TableSectionProps {
   results: SimulationResults;
@@ -42,49 +43,65 @@ export default function TableSection({
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Est. Traffic
+                  <CustomTooltip description="(Pages * MSV/Page * CTR %) * Ramp Factor">
+                    EST. TRAFFIC
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Est. Leads (MQLs)
+                  <CustomTooltip description="Est. Traffic * Traffic-to-Lead CR %">
+                    EST. LEADS (MQL)
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Est. New Customers
+                  <CustomTooltip description="Est. Leads * Lead-to-Customer CR %">
+                    EST. NEW CUSTOMERS
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Est. Monthly Revenue ($)
+                  <CustomTooltip description="Est. New Customers * CLTV">
+                    EST. MONTHLY REVENUE ($)
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Cumulative Revenue ($)
+                  <CustomTooltip description="Running total of monthly revenue">
+                    CUMULATIVE REVENUE ($)
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Cumulative Expense ($)
+                  <CustomTooltip description="Running total of monthly expense. Formula: Monthly SEO Expense * Month #">
+                    CUMULATIVE EXPENSE ($)
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Monthly Profit ($)
+                  <CustomTooltip description="Monthly Revenue - Monthly Expense">
+                    MONTHLY PROFIT ($)
+                  </CustomTooltip>
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Cumulative Profit ($)
+                  <CustomTooltip description="Running total profit/loss. Formula: Cumulative Revenue - Cumulative Expense">
+                    CUMULATIVE PROFIT ($)
+                  </CustomTooltip>
                 </th>
               </tr>
             </thead>
