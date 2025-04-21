@@ -45,14 +45,14 @@ export default function ChartsSection({ monthlyData }: ChartsSectionProps) {
               <Bar
                 dataKey="revenue"
                 name="Monthly Revenue ($)"
-                fill="#93c5fd"
+                fill="#475569"
                 barSize={20}
               />
               <Line
                 type="monotone"
                 dataKey="cumRevenue"
                 name="Cumulative Revenue ($)"
-                stroke="#22c55e"
+                stroke="#0047FF"
                 activeDot={{ r: 8 }}
                 strokeWidth={2}
               />
@@ -80,14 +80,14 @@ export default function ChartsSection({ monthlyData }: ChartsSectionProps) {
                 yAxisId="left"
                 dataKey="revenue"
                 name="Monthly Revenue ($)"
-                fill="#93c5fd"
+                fill="#475569"
                 barSize={20}
               />
               <Bar
                 yAxisId="left"
                 dataKey="expense"
                 name="Monthly Expense ($)"
-                fill="#f87171"
+                fill="#94A3B8"
                 barSize={20}
               />
               <Line
@@ -95,7 +95,7 @@ export default function ChartsSection({ monthlyData }: ChartsSectionProps) {
                 type="monotone"
                 dataKey="profit"
                 name="Monthly Profit ($)"
-                stroke="#22c55e"
+                stroke="#FF8000"
                 strokeWidth={2}
               />
               <Line
@@ -103,7 +103,7 @@ export default function ChartsSection({ monthlyData }: ChartsSectionProps) {
                 type="monotone"
                 dataKey="cumProfit"
                 name="Cumulative Profit ($)"
-                stroke="#3b82f6"
+                stroke="#0047FF"
                 strokeWidth={2}
               />
             </ComposedChart>
