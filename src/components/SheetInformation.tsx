@@ -83,7 +83,7 @@ export default function SheetInformation() {
           <p className="mt-0.5">How to use?</p>
         </SheetTrigger>
       </div>
-      <SheetContent className="bg-white rounded-l-4xl">
+      <SheetContent side="right" className="bg-white rounded-l-xl ">
         <SheetHeader>
           <SheetTitle>
             <h1 className="font-semibold text-xl">
