@@ -18,10 +18,14 @@ export default defineConfig({
     cssCodeSplit: false,
     rollupOptions: {
       output: {
-
         entryFileNames: "index.js",
         manualChunks: () => "index.js",
-
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'styles.css';
+          }
+          return assetInfo.name || 'default-asset-name';
+        },
       },
     },
   },
