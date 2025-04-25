@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf";
 
 export default function NextStepsSection() {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const generatePdf = () => {
     setIsGenerating(true);
@@ -810,6 +811,19 @@ export default function NextStepsSection() {
     }
   };
 
+  const handleCopyLink = () => {
+    const currentUrl = window.location.href;
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 3000); // Reset after 3 seconds
+      })
+      .catch((err) => {
+        console.error("Failed to copy link: ", err);
+      });
+  };
+
   return (
     <div className="w-11/12 mx-auto mt-8 mb-8">
       <h2 className="text-2xl font-semibold mb-6">Next Steps & Actions</h2>
@@ -849,19 +863,42 @@ export default function NextStepsSection() {
         <div className="bg-slate-50 p-6 rounded-2xl">
           <h3 className="text-lg font-medium mb-3">Share Your Simulation</h3>
           <p className="text-sm text-gray-600 mb-4">
-            Copy a unique link to share this simulation with your current
-            settings.
+            Copy a unique link to share this simulation with your current settings.
           </p>
-          <button className="w-full flex justify-center items-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-            </svg>
-            Copy Share Link
+          <button
+            className={`w-full flex justify-center items-center py-2 px-4 rounded-md transition-colors ${
+              isCopied
+                ? "bg-green-600 text-white cursor-default"
+                : "bg-blue-600 text-white hover:bg-blue-700"
+            }`}
+            onClick={handleCopyLink}
+            disabled={isCopied}
+          >
+            {isCopied ? (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 4.707 7.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                </svg>
+                Link Copied!
+              </>
+            ) : (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                </svg>
+                Copy Share Link
+              </>
+            )}
           </button>
         </div>
 
