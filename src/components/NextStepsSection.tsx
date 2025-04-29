@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { jsPDF } from "jspdf";
+import { SimulationInputs } from "@/types";
 
-export default function NextStepsSection() {
+type NextStepsSectionProps = {
+  inputs: SimulationInputs;
+};
+
+export default function NextStepsSection({ inputs }: NextStepsSectionProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -812,17 +817,22 @@ export default function NextStepsSection() {
   };
 
   const handleCopyLink = () => {
-    const currentUrl = window.location.href;
+    const params = new URLSearchParams();
+    Object.entries(inputs).forEach(([key, val]) => {
+      params.set(key, val.toString());
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+  
     navigator.clipboard
-      .writeText(currentUrl)
+      .writeText(shareableUrl)
       .then(() => {
         setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 3000); // Reset after 3 seconds
+        setTimeout(() => setIsCopied(false), 3000);
       })
       .catch((err) => {
         console.error("Failed to copy link: ", err);
       });
-  };
+  };  
 
   return (
     <div className="w-11/12 mx-auto mt-8 mb-8">
