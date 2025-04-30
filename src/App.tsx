@@ -181,7 +181,7 @@ function App() {
               formatNumber={formatNumber}
               formatCurrency={formatCurrency}
             />
-            <NextStepsSection />
+            <NextStepsSection inputs={inputs}/>
           </div>
         </div>
       </HeroUIProvider>
